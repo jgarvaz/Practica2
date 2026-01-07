@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div>
-      <h1>Calculadora HITO 2</h1>
+      <h1>Calculadora HITO 400</h1>
       <input
         type="number"
         placeholder="Número 1"

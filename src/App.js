@@ -4,7 +4,7 @@ function App() {
   const [resultado, setResultado] = useState(null);
 
   const sumar = () => {
-    setResultado(2 + 3);
+    setResultado(2 + 40);
   };
 
   return (

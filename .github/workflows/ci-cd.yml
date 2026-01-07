@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI Pipeline React Static Site
 
 on:
   push:
@@ -7,46 +7,27 @@ on:
     branches: [main]
 
 jobs:
-  test:
-    name: Run Tests
+  test-and-build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      # Clonar el repositorio
+      - uses: actions/checkout@v3
 
+      # Configurar Node.js 24
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 24
 
+      # Instalar dependencias
       - name: Install dependencies
         run: npm install
 
-      - name: Run Unit and Integration Tests
+      # Ejecutar tests unitarios e integración
+      - name: Run tests
         run: npm test -- --watchAll=false
 
-  deploy:
-    name: Build & Deploy to Render
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: npm install
-
+      # Construir la app React
       - name: Build React App
         run: npm run build
-
-      - name: Deploy to Render
-        uses: render-examples/render-deploy-action@v1
-        with:
-          api_key: ${{ secrets.RENDER_API_KEY }}
-          service_id: srv-d5f4c3re5dus7390a00g
 

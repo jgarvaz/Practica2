@@ -6,11 +6,11 @@ function App() {
   const [num2, setNum2] = useState('');
 
   const handleAdd = () => {
-    setResult(Number(num1) - Number(num2));
+    setResult(Number(num1) + Number(num2));
   };
 
   const handleSubtract = () => {
-    setResult(Number(num1) + Number(num2));
+    setResult(Number(num1) - Number(num2));
   };
 
   return (
